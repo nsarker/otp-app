@@ -1,0 +1,26 @@
+#####################################
+# generate OTP
+#####################################
+$mobileNumber="01911310764"
+$response = Invoke-RestMethod -Uri "http://localhost:3000/otp/generate" -Method Post -ContentType "application/json" -Body (@{ mobileNumber = $mobileNumber } | ConvertTo-Json)
+$response
+
+#####################################
+# Verify OTP
+#####################################
+
+$mobileNumber = "01911310764"
+$otp = "7776"
+
+
+$body = @{
+    mobileNumber = $mobileNumber
+    otp = $otp
+} | ConvertTo-Json
+
+$response = Invoke-RestMethod -Method Post -Uri "http://localhost:3000/otp/verify" -Body $body -ContentType "application/json"
+$response
+#####################################
+
+GIT:
+https://blog.devgenius.io/how-to-add-your-project-to-github-with-visual-studio-code-b311b57ad9d0
